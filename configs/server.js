@@ -28,8 +28,11 @@ class Server{
         this.app.use(morgan('dev'));
     }
 
-    routes(){
-    }
+    routes() {
+        this.app.use('/api/administrator', require('./src/administrator/admin.routes.js'));
+        this.app.use('/api/customer', require('./src/customer/cust.routes.js'));
+        this.app.use('/api/auth', require('./src/auth/routes.js'));
+      }
 
     listen(){
         this.app.listen(this.port, () => {
