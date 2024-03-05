@@ -1,13 +1,28 @@
-import express from 'express';
-import userController from './userController.js';
+import { Router } from "express";
+import { check } from "express-validator";
+import { 
+    usersPost
+} from './userController.js';
+import {
+    existsEmail,
+} from "../helpers/db-validators.js";
+import { validateFields } from "../middlewares/validate-fields.js";
 
-const router = express.Router();
+const router = Router();
 
-// Rutas para usuarios
-router.post('/', userController.createUser);
-router.get('/', userController.getAllUsers);
-router.get('/:id', userController.getUserById);
-router.put('/:id', userController.updateUser);
-router.delete('/:id', userController.deleteUser);
+router.post(
+    "/",
+    [
+        check("name", "The name is required").not().isEmpty(),
+        check("password", "The password must be greater than 6 characters").isLength({
+          min: 6,
+        }),
+        check("email", "This is not a valid email").isEmail(),
+        check("email").custom(existsEmail),
+        check("role"),
+        validateFields,
+    ],
+    usersPost
+);
 
 export default router;

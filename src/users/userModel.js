@@ -1,21 +1,34 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
-  username: { 
-    type: String, 
-    required: true, 
-    unique: true 
-},
-  password: { 
-    type: String, 
-    required: true 
-},
-  role: { 
-    type: String, 
-    enum: ['ADMIN', 'CLIENT'], 
-    default: 'CLIENT' },
+const UserSchema = mongoose.Schema({
+    name: {
+        type: String,
+        require: [true, "The name is required"],
+    },
+    email: {
+        type: String,
+        require: [true, "Email is mandatory"],
+        unique: true,
+    },
+    password: {
+        type: String,
+        require: [true, "Password is mandatory"],
+    },
+    role: {
+        type: String,
+        enum: ["ADMIN", "CLIENT"],
+        default: "CLIENT"
+    },
+    state: {
+        type: Boolean,
+        default: true,
+    },
 });
 
-const User = mongoose.model('User', userSchema);
+UserSchema.methods.toJSON = function(){
+    const { _v, password, _id, ...user} = this.toObject();
+    user.uid = _id;
+    return user;
+}
 
-export default User;
+export default mongoose.model('User', UserSchema);
