@@ -31,6 +31,16 @@ const profileController = {
       res.status(500).json({ error: error.message });
     }
   },
+  async deleteAccount(req, res) {
+    try {
+      const userId = req.user._id;
+      // Eliminar al usuario de la base de datos
+      await User.findByIdAndDelete(userId);
+      res.status(200).json({ message: 'Account deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 export default profileController;
