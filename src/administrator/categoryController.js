@@ -1,5 +1,3 @@
-// src/administrator/controllers/categoryController.js
-
 import Category from '../administrator/categoryModel.js';
 
 const categoryController = {
