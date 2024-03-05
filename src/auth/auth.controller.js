@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '../administrator/userModel.js';
+import User from '../users/userModel.js';
 
 const authController = {
   async login(req, res) {
