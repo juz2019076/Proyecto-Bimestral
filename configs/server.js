@@ -5,7 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
-import userRoutes from '../src//administrator/userRoutes.js';
+import userRoutes from '../src/users/userRoutes.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import companiesRoutes from '../src/companies/companies.routes.js';
 
