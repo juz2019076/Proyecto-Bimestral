@@ -15,34 +15,36 @@ class Server {
         this.port = process.env.PORT;
         this.usersPath = '/businessmanagerApi/v1/users';
         this.authPath = '/businessmanagerApi/v1/auth';
-        this.companiesPath = '/businessmanagerApi/v1/companies';
+        this.categoryPath = '/businessmanagerApi/v1/category';
+        this.productPath = '/businessmanagerApi/v1/product';
 
         this.middleware();
-        this.connectToDB();
+        this.conectarDB();
         this.routes();
     }
 
-    async connectToDB() {
+    async conectarDB(){
         await dbConnection();
     }
 
-    middleware() {
-        this.app.use(express.urlencoded({ extended: false }));
+    middleware(){
+        this.app.use(express.urlencoded({extended: false}));
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(helmet());
         this.app.use(morgan('dev'));
     }
 
-    routes() {
-        this.app.use(this.usersPath, userRoutes);
+    routes(){
+        this.app.use(this.userPath, userRoutes);
         this.app.use(this.authPath, authRoutes);
-        this.app.use(this.companiesPath, companiesRoutes);
+        this.app.use(this.categoryPath, categoryRoutes);
+        this.app.use(this.productPath, productRoutes);
     }
 
-    listen() {
+    listen(){
         this.app.listen(this.port, () => {
-            console.log('Server running on port', this.port);
+            console.log('Server running on port ', this.port);
         });
     }
 }
