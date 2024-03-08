@@ -5,8 +5,8 @@ import {
 } from './userController.js';
 import {
     existsEmail,
-} from "../helpers/db-validators.js";
-import { validateFields } from "../middlewares/validate-fields.js";
+} from '../helpers/db-validators.js';
+import { validateFields } from '../middlewares/validate-fields.js';
 
 const router = Router();
 
