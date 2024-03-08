@@ -1,5 +1,5 @@
 import Product from './product.model.js';
-import Category from '../category/category.model.js';
+import Category from '../categories/category.model.js';
 
 export const productPost = async (req, res) => {
     const {categoryName, name, description, price, stock, size, color, gender, amount} = req.body;
