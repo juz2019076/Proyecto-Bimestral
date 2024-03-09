@@ -39,7 +39,7 @@ export const categoryDelete = async (req, res) => {
         const categoryDelete = await Category.findByIdAndDelete(id, resto);
 
         res.status(200).json({
-            msg: 'The post was updated successfully.',
+            msg: 'The post was successfully deleted.',
             category: categoryDelete
         });
 
