@@ -1,23 +1,45 @@
-import jwt from 'jsonwebtoken';
-import User from '../users/userModel.js';
+import bcryptjs from 'bcryptjs';
+import Users from '../users/userModel.js';
+import { generarJWT } from '../helpers/generate-jwt.js';
 
-const authController = {
-  async login(req, res) {
-    const { username, password } = req.body;
+export const login = async (req, res) => {
+    const { email, password } = req.body;
 
-    try {
-      const user = await User.findOne({ username });
+  try {
 
-      if (!user || user.password !== password) {
-        return res.status(401).json({ message: 'Invalid username or password' });
-      }
+    const user = await Users.findOne({ email });
 
-      const token = jwt.sign({ userId: user._id }, process.env.SECRETORPRIVATEKEY);
-      res.status(200).json({ token });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+    if (!user) {
+      return res.status(400).json({
+        msg: "Incorrect credentials, Email does not exist in the database",
+      });
     }
-  },
-};
 
-export default authController;
+    if (!user.state) {
+      return res.status(400).json({
+        msg: "The user does not exist in the database",
+      });
+    }
+
+    const validPassword = bcryptjs.compareSync(password, user.password);
+    if (!validPassword) {
+      return res.status(400).json({
+        msg: "Password is incorrect",
+      });
+    }
+
+    const token = await generarJWT( user.id);
+
+    res.status(200).json({
+      msg: 'Welcome',
+      user,
+      token
+    });
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      msg: "Contact administrator",
+    });
+  }
+}

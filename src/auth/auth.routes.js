@@ -1,9 +1,17 @@
-import express from 'express';
-import authController from '../auth/auth.controller.js';
+import { Router } from "express";
+import { check } from "express-validator";
 
-const router = express.Router();
+import { login } from './auth.controller.js';
+import { validateFields } from '../middlewares/validate-fields.js';
 
-// Ruta para iniciar sesión
-router.post('/login', authController.login);
+const router = Router()
 
-export default router;
+router.post(
+    '/login',
+    [
+        check('email', 'This is not a valid email').isEmail(),
+        check('password', 'The password is mandatory').not().isEmpty(),
+        validateFields,
+    ],login)
+
+    export default router
