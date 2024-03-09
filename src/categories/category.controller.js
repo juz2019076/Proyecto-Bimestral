@@ -48,3 +48,19 @@ export const categoryDelete = async (req, res) => {
         res.status(500).json({ e: "Internal Server Error" });
     }
 }
+
+export const categoryGet = async (req, res) => {
+    try {
+        const category = await Category.find();
+
+        res.json({
+            category
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'An error occurred while fetching category',
+        });
+    }
+}

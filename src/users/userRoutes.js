@@ -1,12 +1,15 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { 
-    usersPost
+    usersPost,
+    userPut,
+    usersDelete
 } from './userController.js';
 import {
     existsEmail,
 } from '../helpers/db-validators.js';
 import { validateFields } from '../middlewares/validate-fields.js';
+import { validarJWT } from "../middlewares/validar-jwt.js";
 
 const router = Router();
 
@@ -23,6 +26,26 @@ router.post(
         validateFields,
     ],
     usersPost
+);
+
+router.put(
+    "/:id",
+    [
+        validarJWT,
+        check("name", "The name is required"),
+        check("role", "Role is mandatory"),
+        validateFields,
+    ],
+    userPut
+);
+
+router.delete(
+    "/:id",
+    [
+        validarJWT,
+        validateFields,
+    ],
+    usersDelete
 );
 
 export default router;

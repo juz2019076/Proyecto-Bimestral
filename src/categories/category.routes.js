@@ -3,7 +3,8 @@ import { check } from "express-validator";
 import {
     categoryDelete,
     categoryPost,
-    categoryPut
+    categoryPut,
+    categoryGet
 } from "./category.controller.js";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -30,6 +31,14 @@ router.put(
         validateFields,
     ],
     categoryPut
+);
+
+router.get(
+    "/",
+    [
+        validateFields,
+    ],
+    categoryGet
 );
 
 router.delete(
