@@ -1,0 +1,180 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "CUSTOMER",
+    "dateExported": "2024-03-14T15:52:41.174Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "27a52143-d2cb-4e6a-ab02-b6476c01dd77",
+            "name": "PRODUCTS",
+            "containerId": "",
+            "created": "2024-03-13T23:31:09.386Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "2798d6d7-301f-4e9e-98a6-29f71dde6295",
+            "name": "USER",
+            "containerId": "",
+            "created": "2024-03-13T23:32:27.952Z",
+            "sortNum": 60000
+        },
+        {
+            "_id": "903eb475-5e0e-4fcd-b284-eaf61aecbbf8",
+            "name": "LOGIN",
+            "containerId": "",
+            "created": "2024-03-13T23:33:24.243Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "e3655ef3-4ea5-40a3-beb9-3ce373bd96dc",
+            "name": "BILL",
+            "containerId": "",
+            "created": "2024-03-14T03:13:17.421Z",
+            "sortNum": 80000
+        },
+        {
+            "_id": "b4f66d3c-8af0-45c7-bb9a-2e7b2e343e8a",
+            "name": "SHOPPING_CART",
+            "containerId": "",
+            "created": "2024-03-14T04:48:55.307Z",
+            "sortNum": 90000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "7a6745a5-629a-4fb0-9af2-5cd91541f653",
+            "colId": "e5fee09e-455d-4db9-af4d-166de3f37501",
+            "containerId": "27a52143-d2cb-4e6a-ab02-b6476c01dd77",
+            "name": "LookFor",
+            "url": "http://localhost:3000/businessmanagerApi/v1/product/search?name=Laptop Ultradelgada",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-03-13T23:31:14.516Z",
+            "modified": "2024-03-13T23:47:34.901Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWYyMzc1ZDUyNjBhMTk5MGI4NDZhNmMiLCJpYXQiOjE3MTAzNzI4NTcsImV4cCI6MTcxMjk2NDg1N30.e7kyV8eaoq5SbO2n5_dVAZ-BfmTxBmP_rq-LCyMMZpY"
+                }
+            ],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Laptop Ultradelgada",
+                    "isPath": false
+                }
+            ],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "78e1f121-6256-447d-b66a-972839f5a97e",
+            "colId": "e5fee09e-455d-4db9-af4d-166de3f37501",
+            "containerId": "2798d6d7-301f-4e9e-98a6-29f71dde6295",
+            "name": "Post",
+            "url": "http://localhost:3000/businessmanagerApi/v1/users",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-13T23:32:05.578Z",
+            "modified": "2024-03-13T23:32:05.578Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Juan Uz Aguaré\",\n  \"email\": \"juanag@kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "e107834a-84d3-41d5-b1f1-526bf6cb26b8",
+            "colId": "e5fee09e-455d-4db9-af4d-166de3f37501",
+            "containerId": "903eb475-5e0e-4fcd-b284-eaf61aecbbf8",
+            "name": "LOGIN",
+            "url": "http://localhost:3000/businessmanagerApi/v1/auth/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-13T23:33:02.684Z",
+            "modified": "2024-03-13T23:34:14.077Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"juanag@kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "ca04cb8e-3d38-4e1e-99e7-b46506206ef0",
+            "colId": "e5fee09e-455d-4db9-af4d-166de3f37501",
+            "containerId": "e3655ef3-4ea5-40a3-beb9-3ce373bd96dc",
+            "name": "POST_PurchaseCompletion",
+            "url": "http://localhost:3000/businessmanagerApi/v1/cart/finalize-purchase",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-14T07:40:02.252Z",
+            "modified": "2024-03-14T15:51:55.505Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWYyMzc1ZDUyNjBhMTk5MGI4NDZhNmMiLCJpYXQiOjE3MTAzNzI4NTcsImV4cCI6MTcxMjk2NDg1N30.e7kyV8eaoq5SbO2n5_dVAZ-BfmTxBmP_rq-LCyMMZpY"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"products\": [\n        {\n            \"productId\": \"65f207bc5260a1990b8469c1\",\n            \"quantity\": 1\n        }\n    ],\n    \"total\": 249.99\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "ab2ee8ee-37e0-45fd-9a6b-de5906f9bc7b",
+            "colId": "e5fee09e-455d-4db9-af4d-166de3f37501",
+            "containerId": "b4f66d3c-8af0-45c7-bb9a-2e7b2e343e8a",
+            "name": "POST_ShoppingCart",
+            "url": "http://localhost:3000/businessmanagerApi/v1/cart/add-to-cart",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-03-14T04:49:11.863Z",
+            "modified": "2024-03-14T06:02:39.010Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWYyMzc1ZDUyNjBhMTk5MGI4NDZhNmMiLCJpYXQiOjE3MTAzNzI4NTcsImV4cCI6MTcxMjk2NDg1N30.e7kyV8eaoq5SbO2n5_dVAZ-BfmTxBmP_rq-LCyMMZpY"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"productId\": \"65f207bc5260a1990b8469c1\",\n    \"quantity\": 1 \n}\n",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "77c9c3a6-345a-4892-bf98-160b2a239169",
+            "colId": "e5fee09e-455d-4db9-af4d-166de3f37501",
+            "containerId": "b4f66d3c-8af0-45c7-bb9a-2e7b2e343e8a",
+            "name": "POST_EMPTYCARTSHOPPINGCART",
+            "url": "http://localhost:3000/businessmanagerApi/v1/cart/empty-cart",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-03-14T06:32:01.172Z",
+            "modified": "2024-03-14T06:41:47.699Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWYyMzc1ZDUyNjBhMTk5MGI4NDZhNmMiLCJpYXQiOjE3MTAzNzI4NTcsImV4cCI6MTcxMjk2NDg1N30.e7kyV8eaoq5SbO2n5_dVAZ-BfmTxBmP_rq-LCyMMZpY"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

@@ -96,3 +96,74 @@ export const productGet = async (req, res) => {
         });
     }
 }
+
+export const getTopSellingProducts = async (req, res) => {
+    try {
+        const topSellingProducts = await Product.find().sort({ salesCount: -1 }).limit(10);
+
+        res.status(200).json({
+            topSellingProducts
+        });
+    } catch (error) {
+        console.error('Error fetching top selling products:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export const adjustStock = async (req, res) => {
+    try {
+        const { productId } = req.params;
+        const { newStock } = req.body;
+
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        product.stock = newStock;
+        await product.save();
+
+        res.status(200).json({
+            message: 'Stock adjusted successfully',
+            product
+        });
+    } catch (error) {
+        console.error('Error adjusting stock:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export const getOutofStockProducts = async (req, res) => {
+    try {
+        
+        const outOfStockProducts = await Product.find({ stock: 0 });
+
+        res.status(200).json({
+            outOfStockProducts
+        });
+    } catch (error) {
+        console.error('Error fetching out of stock products:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export const searchProducts = async (req, res) => {
+    try {
+        const { name, color, gender } = req.query;
+
+        const searchCriteria = {};
+        if (name) searchCriteria.name = name;
+        if (color) searchCriteria.color = color;
+        if (gender) searchCriteria.gender = gender;
+
+        const products = await Product.find(searchCriteria);
+
+        res.status(200).json({
+            products
+        });
+    } catch (error) {
+        console.error('Error searching products:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}

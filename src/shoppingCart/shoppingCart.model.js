@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
-const InvoiceSchema = mongoose.Schema({
+const ShoppingCartSchema = mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
     products: [{
         productId: {
             type: mongoose.Schema.Types.ObjectId,
@@ -12,14 +16,10 @@ const InvoiceSchema = mongoose.Schema({
             required: true
         }
     }],
-    total: {
-        type: Number,
-        required: true
-    },
-    date: {
+    createdAt: {
         type: Date,
         default: Date.now
     }
 });
 
-export default mongoose.model('Invoice', InvoiceSchema);
+export default mongoose.model('ShoppingCart', ShoppingCartSchema);

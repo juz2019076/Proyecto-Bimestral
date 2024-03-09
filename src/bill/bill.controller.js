@@ -1,22 +1,55 @@
-import Factura from './bill.model.js';
+import Invoice from './bill.model.js';
 
-export const crearFactura = async (req, res) => {
+export const getInvoicesByUser = async (req, res) => {
     try {
-        const { user, total, productos } = req.body;
+        const { userId } = req.body;
 
-        if (!user || !total || !productos || productos.length === 0) {
-            return res.status(400).json({ error: 'Los datos de la factura son inválidos' });
+        if (!userId) {
+            return res.status(400).json({ error: 'IDUser is required' });
         }
 
-        const nuevaFactura = await Factura.create({
-            user: user,
-            products: productos,
-            total: total
+        const invoices = await Invoice.find({ userId });
+
+        if (!invoices || invoices.length === 0) {
+            return res.status(404).json({ error: 'No invoices found for the specified user' });
+        }
+
+        res.status(200).json({ invoices });
+    } catch (error) {
+        console.error('Error fetching invoices by user:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+export const getInvoiceDetails = async (req, res) => {
+    try {
+        const { invoiceId } = req.params;
+
+        const invoice = await Invoice.findById(invoiceId);
+
+        res.status(200).json({
+            invoice
+        });
+    } catch (error) {
+        console.error('Error fetching invoice details:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export const generateInvoice = async (userId, products, total) => {
+    try {
+        const newInvoice = new Invoice({
+            userId,
+            products,
+            total,
+            date: new Date()
         });
 
-        res.status(201).json({ factura: nuevaFactura });
+        await newInvoice.save();
+
+        return newInvoice;
     } catch (error) {
-        console.error('Error al crear la factura:', error);
-        res.status(500).json({ error: 'Error al crear la factura' });
+        console.error('Error generating invoice:', error);
+        throw new Error('Failed to generate invoice');
     }
 };

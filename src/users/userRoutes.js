@@ -3,7 +3,8 @@ import { check } from "express-validator";
 import { 
     usersPost,
     userPut,
-    usersDelete
+    usersDelete,
+    userGet
 } from './userController.js';
 import {
     existsEmail,
@@ -46,6 +47,14 @@ router.delete(
         validateFields,
     ],
     usersDelete
+);
+
+router.get(
+    "/",
+    [
+        validateFields,
+    ],
+    userGet
 );
 
 export default router;

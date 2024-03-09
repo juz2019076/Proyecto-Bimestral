@@ -6,12 +6,12 @@ import {
      productPut,
      productGet
 } from './product.controller.js';
-import { 
-    shoppingCartPost,
-    obtain
- } from '../shoppingCart/shoppingCart.controller.js';
 import { validateFields } from '../middlewares/validate-fields.js';
 import { validarJWT } from '../middlewares/validar-jwt.js';
+import { getTopSellingProducts } from './product.controller.js';
+import { getOutofStockProducts } from './product.controller.js';
+import { adjustStock } from './product.controller.js';
+import { searchProducts } from './product.controller.js';
 
 const router = Router();
 
@@ -54,26 +54,36 @@ router.get(
     productGet
 );
 
-router.post(
-    "/shoppingCart/:productId",
+router.get(
+    "/top-selling",
+    getTopSellingProducts
+);
+
+router.put(
+    "/:productId/adjust-stock",
     [
         validarJWT,
         validateFields,
     ],
-    (req, res) => {
-        const {
-            productId
-        } = req.params;
-        const {
-            amount
-        } = req.body;
+    adjustStock
+);
 
-        shoppingCartPost(productId, amount);
+router.get(
+    "/out-of-stock",
+    [
+        validarJWT,
+        validateFields,
+    ],
+    getOutofStockProducts
+);
 
-        res.json({
-            shoppingCart: obtain()
-        });
-    }
+router.get(
+    "/search",
+    [
+        validarJWT,
+        validateFields,
+    ],
+    searchProducts
 );
 
 export default router;

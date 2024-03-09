@@ -51,3 +51,19 @@ export const userPut = async (req, res) => {
         res.status(500).json({ e: "Internal Server Error" });
     }
 }
+
+export const userGet = async (req, res) => {
+    try {
+        const user = await User.find();
+
+        res.json({
+            user
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'An error occurred while fetching category',
+        });
+    }
+}

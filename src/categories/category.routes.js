@@ -4,7 +4,8 @@ import {
     categoryDelete,
     categoryPost,
     categoryPut,
-    categoryGet
+    categoryGet,
+    getProductsByCategory
 } from "./category.controller.js";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -45,9 +46,17 @@ router.delete(
     "/:id",
     [
         validarJWT,
-        validateFields,
     ],
     categoryDelete
+);
+
+
+router.get(
+    "/:id/products",
+    [
+        validateFields,
+    ],
+    getProductsByCategory
 );
 
 export default router;
