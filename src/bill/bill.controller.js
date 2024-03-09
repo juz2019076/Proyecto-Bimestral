@@ -1,38 +1,17 @@
-let factura = {
-    cliente: '',
-    detalles: [],
-    total: 0
-};
+import Factura from './bill.model.js';
 
-export const agregarProductoAFactura = (producto) => {
-    factura.detalles.push(producto);
-    factura.total += producto.precio * producto.cantidad;
-};
 
-export const establecerCliente = (nombreCliente) => {
-    factura.cliente = nombreCliente;
-};
+export const crearFactura = async (req, res) => {
+    try {
+        const { cliente, productos } = req.body;
+        const nuevaFactura = await Factura.create({
+            cliente: cliente,
+            productos: productos
+        });
 
-export const obtenerDetallesFactura = () => {
-    return factura.detalles;
-};
-
-export const calcularTotalFactura = () => {
-    return factura.total;
-};
-
-export const generarFactura = () => {
-    return {
-        cliente: factura.cliente,
-        detalles: obtenerDetallesFactura(),
-        total: calcularTotalFactura()
-    };
-};
-
-export const reiniciarFactura = () => {
-    factura = {
-        cliente: '',
-        detalles: [],
-        total: 0
-    };
+        res.status(201).json({ factura: nuevaFactura });
+    } catch (error) {
+        console.error('Error al crear la factura:', error);
+        res.status(500).json({ error: 'Error al crear la factura' });
+    }
 };

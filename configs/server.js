@@ -9,6 +9,7 @@ import userRoutes from '../src/users/userRoutes.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import categoryRoutes from '../src/categories/category.routes.js';
 import productRoutes from '../src/products/product.routes.js';
+import facturaRoutes from '../src/bill/bill.routes.js';
 
 class Server {
     constructor() {
@@ -18,6 +19,7 @@ class Server {
         this.authPath = '/businessmanagerApi/v1/auth';
         this.categoryPath = '/businessmanagerApi/v1/category';
         this.productPath = '/businessmanagerApi/v1/product';
+        this.facturaPath = '/businessmanagerApi/v1/bill';
 
         this.middleware();
         this.conectarDB();
@@ -41,6 +43,8 @@ class Server {
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.categoryPath, categoryRoutes);
         this.app.use(this.productPath, productRoutes);
+        this.app.use(this.facturaPath, facturaRoutes);
+        
     }
 
     listen(){
