@@ -1,0 +1,74 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Categories",
+    "dateExported": "2024-03-09T04:12:54.495Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a4e9571a-417c-4689-a926-5f3db3ccc397",
+            "colId": "6889572d-771a-46b9-8178-42e343770706",
+            "containerId": "",
+            "name": "POST_category",
+            "url": "http://localhost:3000/businessmanagerApi/v1/category",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-09T03:00:44.247Z",
+            "modified": "2024-03-09T03:27:08.332Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVjZGJjZTkyZDI1MzBhZDdjM2Y0MDEiLCJpYXQiOjE3MDk5NTI2MDEsImV4cCI6MTcxMjU0NDYwMX0.MQjDLqJXnm8hfb48XQnu-TgrTk-Y8KzvlGjdkETowm4"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Tecnología\",\n  \"description\": \"Objetos Tenologicos\"\n}",
+                "form": []
+            },
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "20d9246d-1a36-40ba-8d21-357f93249040",
+            "colId": "6889572d-771a-46b9-8178-42e343770706",
+            "containerId": "",
+            "name": "PUT_category",
+            "url": "http://localhost:3000/businessmanagerApi/v1/category/65ebd70cbb9a072a951986b4",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-03-09T03:01:05.566Z",
+            "modified": "2024-03-09T03:49:59.230Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVjZGJjZTkyZDI1MzBhZDdjM2Y0MDEiLCJpYXQiOjE3MDk5NTI2MDEsImV4cCI6MTcxMjU0NDYwMX0.MQjDLqJXnm8hfb48XQnu-TgrTk-Y8KzvlGjdkETowm4"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "e0ab8b95-90ba-48e9-bb8e-81e47a65402e",
+            "colId": "6889572d-771a-46b9-8178-42e343770706",
+            "containerId": "",
+            "name": "DELETE_category",
+            "url": "http://localhost:3000/businessmanagerApi/v1/category/65ebd70cbb9a072a951986b4",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-03-09T03:01:26.484Z",
+            "modified": "2024-03-09T03:51:58.173Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVjZGJjZTkyZDI1MzBhZDdjM2Y0MDEiLCJpYXQiOjE3MDk5NTI2MDEsImV4cCI6MTcxMjU0NDYwMX0.MQjDLqJXnm8hfb48XQnu-TgrTk-Y8KzvlGjdkETowm4"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        }
+    ]
+}
